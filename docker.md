@@ -1,31 +1,20 @@
-**Docker**
-
-**Docker  
-**
+## DOCKER
 
 Docker is a tool designed to make it easier to create, deploy, and run applications by using containers. A container is a standard unit of software, so the application runs quickly and reliably from one computing environment to another computing environment. Containers are advanced to virtual machines. To reduce the deployment time and down time we use containers.
 
 Docker is used to run services and applications, an OS image (for example centOS) won’t run in docker, it exits out immediately. Unlike VM's, containers are not meant to host an OS, containers are meant to run a specific task or process such as to host an instance of a web server or application server or a database or simply to carry out some kind of computation or analysis. Once the task is complete the container exits the container only as long as the process inside it is alive. A library is a default repository which has the official images.
 
-Docker has two editions the Community Edition and the enterprise edition, the community edition is the
-
-set of free Docker products. The Enterprise Edition is certified and supported container platform that
-
-comes with enterprise add-ons like the image management, image Security and universal control plan for
-
-managing and orchestrating container run times.
-
-![C:\\Downloads\\IMG\_1352.jpg](images/media/image6.jpg)
+Docker has two editions the Community Edition and the enterprise edition, the community edition is the set of free Docker products. The Enterprise Edition is certified and supported container platform that comes with enterprise add-ons like the image management, image Security and universal control plan for managing and orchestrating container run times.
 
 ![](images/media/image28.png)
 
 ![](images/media/image15.png)
 
-**Container**
+### Container
 
 Containers are completely isolated environments, as in they can have their own processes or services, their own network interfaces, their own mounts, just like virtual machines except they all share the same OS kernel. Some of the different types of containers are LXC, LXD, LXCFS etc. docker utilizes LXC containers. The main purpose of Docker is to package and containerize applications and to ship them and to run them anywhere any time as many times as you want.
 
-**Virtual machine**
+### Virtual machine
 
 A computer system created using software on one physical computer in order to emulate the functionality of another separate physical computer.
 
@@ -61,11 +50,7 @@ Let's go back to the example where we are on a simple web application in a Docke
 
 Every Docker container gets an IP assigned by default. In this case, it is 172.17.0.2. But remember that this is an internal IP and is only accessible within the Docker host. So if you open a browser from within the Docker host, you can go to [<span class="underline">http://172.17.0.2:5000</span>](http://172.17.0.2:5000) to access the IP address. But since this is an internal IP, users outside of the docker host cannot access it using this IP. For this, we could use the IP of the Docker host, which is 192.168.1.5.
 
-But for that to work, you must have mapped the port inside the Docker container to a free port on the
-
-Docker host, for example, for one of the users to access the application through Port 80 on the Docker
-
-host. I could map Port 80 of the local host to Port 5000 on the Docker container using the **-p** parameter in the command like this(**docker run -p 80:5000 imagename**) And so the user can access my application by going to the URL, **http://192.168.1.5:80**. And all traffic on Port 80 on my docker host will get routed to port 5000 inside the Docker container. This way, you can run multiple instances of your application and map them to different ports on the docker host or run instances of different applications on different ports. For example, in this case, I'm running an instance of mysql that runs a database on my host and listens on the default mysql port, which happens to be 3306 or another instance of mysql on another port 8306. So you can run as many applications like this and map them to as many ports as you want. And of course, you cannot map to the same port on the dock or host more than once.
+But for that to work, you must have mapped the port inside the Docker container to a free port on the Docker host, for example, for one of the users to access the application through Port 80 on the Docker host. I could map Port 80 of the local host to Port 5000 on the Docker container using the **-p** parameter in the command like this(**docker run -p 80:5000 imagename**) And so the user can access my application by going to the URL, **http://192.168.1.5:80**. And all traffic on Port 80 on my docker host will get routed to port 5000 inside the Docker container. This way, you can run multiple instances of your application and map them to different ports on the docker host or run instances of different applications on different ports. For example, in this case, I'm running an instance of mysql that runs a database on my host and listens on the default mysql port, which happens to be 3306 or another instance of mysql on another port 8306. So you can run as many applications like this and map them to as many ports as you want. And of course, you cannot map to the same port on the dock or host more than once.
 
 For that to work, you must have mapped the port inside the docker container to a free port on the docker host. For example, for one of the users to access the application through port 80 on the docker host, port 80 must be mapped off to a local host to port 5000 on the docker container using the –p parameter in the run command..
 
@@ -87,23 +72,20 @@ Docker file based on above
 
 **Docker file**
 
+```bash
 Sudo Vi Dockerfile
-
 FROM ubuntu:18.04
-
 RUN apt-get install –y git
-
 RUN apt-get install –y vim
-
+```
 Now we need to build the file or image,
 
-Sudo docker build –t imagename:version locationofdockerfile.
-
+```bash
+sudo docker build –t imagename:version locationofdockerfile.
+```
 . (dot- for present directory)
 
 ![](images/media/image22.png)
-
-![C:\\Downloads\\IMG\_1353.jpg](images/media/image14.jpg)
 
 ![](images/media/image8.png)
 
@@ -121,8 +103,9 @@ Let us take a simple web application written in Python. This piece of code is us
 
 CMD in docker file, which stands for command, that defines the program that will be run within the container it starts.
 
+```bash
 docker run \<image-name\> \<command\> → example - docker run ubuntu sleep 5
-
+```
 To make it permanent create a dockerfile using ubuntu image, and put CMD sleep 5 as shown in the below image
 
 ![](images/media/image10.png)
@@ -169,146 +152,92 @@ To start docker compose file – docker-compose –f filename.yml up
 
 To stop the docker compose file - docker-compose –f filename.yml down
 
-1.  > **Docker registry**
+## Docker registry
 
-> If the containers were the rain, then they will rain from the docker registry which are the clouds.
-> 
-> That's where the docker images are stored. It’s a central repository of all docker images.
-> 
-> ![](images/media/image18.png)
-> 
-> ![](images/media/image37.png)
+If the containers were the rain, then they will rain from the docker registry which are the clouds.
+That's where the docker images are stored. It’s a central repository of all docker images.
+
+![](images/media/image18.png)
+ 
+![](images/media/image37.png)
 
 In order to push the image to a private repository, we must first tag the image with a private registry URL in it, then using the push command, we can push the image to the local private registry.
 
 **Note:** Docker hub, besides public and private repositories, it also provides: automated builds, integration with source control solutions like Github and bitbucket etc.
 
-2.  > **Docker engine**
+## Docker engine
 
-> Docker engine is simply referred to a host with docker installed on it, when we install docker on
-> 
-> a linux host we’re actually installing 3 different components,
-> 
-> the docker daemon is a background process that manages docker objects such as the images,
-> 
-> containers, volumes and networks.
-> 
-> The docker REST API server is the API interface that programs can use to talk to the daemon and provide instructions.
-> 
-> The docker CLI is nothing but the command line interface, that is used to perform actions such
-> 
-> as running , stopping containers etc. It uses the rest API to interact with the docker daemon.
-> 
-> ![](images/media/image33.png)
+Docker engine is simply referred to a host with docker installed on it, when we install docker on a linux host we’re actually installing 3 different components, the docker daemon is a background process that manages docker objects such as the images, containers, volumes and networks. The docker REST API server is the API interface that programs can use to talk to the daemon and provide instructions. The docker CLI is nothing but the command line interface, that is used to perform actions such as running , stopping containers etc. It uses the rest API to interact with the docker daemon.
 
-3.  > **NAMESPACE – PID**
+![](images/media/image33.png)
+
+## NAMESPACE – PID
 
 Namespaces are one of the core Linux features that Docker uses to isolate containers. In simple terms: A **namespace makes a container think it has its own system resources, even though it shares the same host OS.** So each container feels like it is running on its own machine, but actually everything runs on the same Docker host.
 
-> ![](images/media/image11.png)
+![](images/media/image11.png)
 
 **What is happening internally?**
 
 Host view:
 
-Docker host processes -  
+Docker host processes -
+
+```bash
 PID: 2
-
 PID: 3
-
 PID: 4
-
 PID: 5 - container bash
-
 PID: 6 - container ps
-
+```
 Container view:
 
+```bash
 PID - 1 - container bash
-
 PID -2 - container ps
-
+```
 **The same processes have different PID views. This is called PID namespace.**
 
-Containerization technology allows the process to be isolated and run inside a container using
+Containerization technology allows the process to be isolated and run inside a container using named spaces. So it runs with the process id of one inside the container and outside on the docker host it runs another process with another process ID.
 
-named spaces. So it runs with the process id of one inside the container and outside on the docker
+## CGroups - Control groups
+ 
+![](images/media/image16.png)
+ 
+Docker containers on the host share the same underlying resources like CPU, Memory etc. there is no restriction for a container to use a particular amount of resource space,so it may end up utilizing all of the resources on the underlying host. But there is a way to restrict the amount of CPU or memory a container can use, docker uses 3 groups or control groups to restrict the amount of hardware resources allocated to each container. This can be done by providing the -- CPU use option to the docker command providing a value.
+ 
+Example: 
+```bash
+docker run –cpu=.5 ubuntu 🡪 the container uses not more than 50% of the cpu space.  
+docker run –memory=100m ubuntu 🡪 it uses not more than 100mb of the memory.
+```
+## Docker storage
 
-host it runs another process with another process ID.
+### File system
 
-> **CGroups - Control groups**
-> 
-> ![](images/media/image16.png)
-> 
-> Docker containers on the host share the same underlying resources like CPU, Memory etc. there is no restriction for a container to use a particular amount of resource space,so it may end up utilizing all of the resources on the underlying host. But there is a way to restrict the amount of CPU or memory a container can use, docker uses 3 groups or control groups to restrict the amount of hardware resources allocated to each container. This can be done by providing the -- CPU use option to the docker command providing a value.
-> 
-> Example: docker run –cpu=.5 ubuntu 🡪 the container uses not more than 50% of the cpu space.  
-> docker run –memory=100m ubuntu 🡪 it uses not more than 100mb of the memory.
+When you install docker on a system, it creates the folder structure at **var/lib/docker** and you Have multiple folders under it called **aufs, containers, image, volumes**, this is where docker stores all its data by default, data means files related to images and containers running on the docker host.
 
-4.  > **Docker storage**
+### layered architecture
+ 
+when docker builds image it builds these in a layered architecture, each line of instruction in the docker file creates a new layer in the docker image with just the changes from the previous layer.
+ 
+![](images/media/image3.png)
 
-> File system
-> 
-> When you install docker on a system, it creates the folder structure at **var/lib/docker** and you
-> 
-> Have multiple folders under it called **aufs, containers, image, volumes**, this is where docker  
-> stores all its data by default, data means files related to images and containers running on the  
-> docker host.
-> 
-> layered architecture
-> 
-> when docker builds image it builds these in a layered architecture, each line of instruction in
-> 
-> the docker file creates a new layer in the docker image with just the changes from the
-> 
-> previous layer.
-> 
-> ![](images/media/image3.png)
-> 
-> ![](images/media/image5.png)
-> 
-> ![](images/media/image9.png)
-> 
-> ![](images/media/image2.png)
-> 
-> In the above, when we run the docker build command for **dockerfile2** to build a new image, for
-> 
-> this application since the first three layers of both the applications are the same, docker is not
-> 
-> going to build the first 3 layers, instead it reuses the same 3 layers it built for the first application
-> 
-> from the cache and only creates the last 2 layers with the new sources and the new entry point,
-> 
-> This way Docker builds images faster and efficiently saves disk space.
-> 
-> There are two types of mounts a **volume mounting and a bind mount volume**, volume mount
-> 
-> Mounts a volume from the volumes directory and bind mount mounts a directory from any
-> 
-> Location on the docker host.
-> 
-> **Using –v option is the old method in docker run commands, as of now, we use - - mount option,** i.e., **docker run \\ - - mount type=bind, source=/data/mysql, target=/var/lib/mysql mysql**. Source 🡪 the location on my host, and target is the location on my container.
+![](images/media/image5.png)
 
-Who is responsible for doing all of these operations? Maintaining the layered architecture.
+![](images/media/image9.png)
+ 
+![](images/media/image2.png)
+ 
+In the above, when we run the docker build command for **dockerfile2** to build a new image, for this application since the first three layers of both the applications are the same, docker is not going to build the first 3 layers, instead it reuses the same 3 layers it built for the first application from the cache and only creates the last 2 layers with the new sources and the new entry point, This way Docker builds images faster and efficiently saves disk space.
 
-Creating a writable layer moving files across layers to enable copy and write etc. It's the  
-**storage drivers.** So Dockery uses storage drivers to enable layered architecture<span class="underline">.</span>
+There are two types of mounts a **volume mounting and a bind mount volume**, volume mount Mounts a volume from the volumes directory and bind mount mounts a directory from any Location on the docker host.
+ 
+**Using –v option is the old method in docker run commands, as of now, we use - - mount option,** i.e., **docker run \\ - - mount type=bind, source=/data/mysql, target=/var/lib/mysql mysql**. Source 🡪 the location on my host, and target is the location on my container.
 
-> The storage drivers are responsible for all the operations such as maintaining the layered archic-
-> 
-> tecture, creating a writable layer, moving files across layers to enable copy and write etc. even
-> 
-> The docker uses storage drivers to enable layered architecture. Some of the common storage
-> 
-> drivers are AUFS, BTRFS, ZFS, Device Mapper, overlay and overlay2. The selection of the
-> 
-> storage driver depends on the underlying OS being used, for example with Ubuntu, the
-> 
-> storage driver is UFS, whereas this storage driver is not available on other OS’s like fedora or
-> 
-> cent OS, in that case device mapper may be the best option.
+Who is responsible for doing all of these operations? Maintaining the layered architecture. Creating a writable layer moving files across layers to enable copy and write etc. It's the **storage drivers.** So Docker uses storage drivers to enable layered architecture<span class="underline">.</span> The storage drivers are responsible for all the operations such as maintaining the layered archictecture, creating a writable layer, moving files across layers to enable copy and write etc. even The docker uses storage drivers to enable layered architecture. Some of the common storage drivers are AUFS, BTRFS, ZFS, Device Mapper, overlay and overlay2. The selection of the storage driver depends on the underlying OS being used, for example with Ubuntu, the storage driver is UFS, whereas this storage driver is not available on other OS’s like fedora or cent OS, in that case device mapper may be the best option.
 
-**Docker network** (Important)
+## Docker network (Important)
 
 When you install docker it creates 3 networks automatically: **bridge, none and host**. Bridge is the default network a container gets attached to. The default bridge network with the network id 172.17.0.1. If we would like to associate the container with any other network, we specify the network information like, **docker run ubuntu - - network=none**, **docker run ubuntu - - network=host.**
 
@@ -332,100 +261,62 @@ How were the containers isolated within the host, docker uses **network name spa
 
 ![](images/media/image30.png)
 
-> Default network is the bridge network
-> 
-> To inspect the container or to get more details – docker inspect containername or id
-> 
-> To inspect bridge network docker network inspect networkname or
-> 
-> docker inspect network networkname
-> 
-> To check ip address of container from host machine –
-> 
-> docker inspect containername | grep –I ipaddress
-> 
-> To check ip address – ip a
-> 
-> To list all the networks – docker network ls
-> 
-> To create a network – docker network create networkname
-> 
-> To copy one container from default network to custom network –
-> 
-> docker network connect customnetworkname containername
-> 
-> To disconnect container from network –
-> 
-> docker network disconnect networkname containername
-> 
-> To connect container to the network –
-> 
-> docker network connect networkname containername
+Default network is the bridge network.
+To inspect the container or to get more details – ```docker inspect containername or id```
+To inspect bridge network - ```docker network inspect networkname``` or  
+                            ```docker inspect network networkname```
+To check ip address of container from host machine – ```docker inspect containername | grep –I ipaddress```
+To check ip address – ```ip a```
+To list all the networks – ```docker network ls```
+To create a network – ```docker network create networkname``` 
+To copy one container from default network to custom network – ```docker network connect customnetworkname containername``` 
+To disconnect container from network – ```docker network disconnect networkname containername```
+To connect container to the network – ```docker network connect networkname containername```
 
-5.  > **Docker volumes**
+## Docker volumes
 
-> Docker volumes are file systems mounted on containers to preserve data generated by the
-> 
-> running containers. Docker volumes are used for data persistence. There are 3 types of volumes,
-> 
-> and so different ways of creating them
-> 
-> Usually the way to create docker volumes is using docker run command using –v option and the
-> 
-> path of the folder.
-> 
-> The second type is where you create a volume just by referencing the container directory, these
-> 
-> are called anonymous volumes (automatically generates a folder).
-> 
-> The 3<sup>rd</sup> volume type is actually an improvement of the anonymous volumes and it specifies the
-> 
-> name of that folder on the host file system. These are called named volumes (mostly used in a
-> 
-> production).
-> 
-> To create volume – docker volume create volumename
-> 
-> To list the volumes – docker volumes ls
-> 
-> To inspect volume – docker volume inspect volumename
-> 
-> ![C:\\Downloads\\IMG\_1358.jpg](images/media/image4.jpg)
-> 
-> ![](images/media/image12.png)
+Docker volumes are file systems mounted on containers to preserve data generated by the running containers. Docker volumes are used for data persistence. There are 3 types of volumes, and so different ways of creating them Usually the way to create docker volumes is using docker run command using `–v` option and the path of the folder. 
 
-6.  > **Docker vaults**
+The second type is where you create a volume just by referencing the container directory, these are called `anonymous volumes` (automatically generates a folder).
 
-> Vaults are used to protect credentials and any other sensitive information, for this to be achieved
-> 
-> a third party plugin called hashicorp is to be installed.
+The 3<sup>rd</sup> volume type is actually an improvement of the anonymous volumes and it specifies the name of that folder on the host file system. These are called named volumes (mostly used in a production).
+ 
+To create volume – `docker volume create volumename` 
+To list the volumes – `docker volumes ls` 
+To inspect volume – `docker volume inspect volumename`
+ 
+![C:\\Downloads\\IMG\_1358.jpg](images/media/image4.jpg)
 
-7.  > Run-tag  
-    > To run an older version – docker run imagename:version (ex: docker run reddis:4.0)
+![](images/media/image12.png)
 
-8.  > Advanced docker run features
+## Docker vaults
 
-> To know what version of image is downloading – docker run ubuntu cat /etc/\*release\*
-> 
-> Attach and detach modes
-> 
-> Attach mode (attach to the console, we won’t be able to perform any command operations)
-> 
-> For example – docker run ubuntu sleep 100
-> 
-> Detach mode (runs in the background)
-> 
-> For example – docker run –d ubuntu sleep 100
-> 
-> To attach to the console – docker attach containerid
-> 
-> To map the port of docker host to docker container – docker run –p 8080:8080 jenkins
-> 
-> To map docker volume so that the data can be stored, incase of container stopped or restarted –
-> 
-> Docker run –p 8080:8080 –v /root/createddirectoryname:/var/jenkins/jenkins\_home –u(user)
-> 
-> root jenkins
+Vaults are used to protect credentials and any other sensitive information, for this to be achieved a third party plugin called hashicorp is to be installed.
+
+Run-tag  
+To run an older version – `docker run imagename:version` (ex: docker run reddis:4.0)
+
+Advanced docker run features
+
+To know what version of image is downloading – `docker run ubuntu cat /etc/\*release\*`
+
+Attach and detach modes
+ 
+Attach mode (attach to the console, we won’t be able to perform any command operations)
+
+For example – `docker run ubuntu sleep 100`
+ 
+Detach mode (runs in the background)
+ 
+For example – `docker run –d ubuntu sleep 100`
+ 
+To attach to the console – `docker attach containerid`
+ 
+To map the port of docker host to docker container – `docker run –p 8080:8080 jenkins`
+ 
+To map docker volume so that the data can be stored, incase of container stopped or restarted –
+ 
+`Docker run –p 8080:8080 –v /root/createddirectoryname:/var/jenkins/jenkins\_home –u(user) root jenkins`
 
 ## Workflow of Docker Architecture
 
@@ -433,59 +324,30 @@ How were the containers isolated within the host, docker uses **network name spa
 
 Step-by-step process:
 
-1.  > User runs a command using **Docker Client**.
-
-2.  > The client sends the request to **Docker Daemon**.
-
-3.  > The daemon checks if the image exists locally.
-
-4.  > If not available, it **pulls the image from Docker Registry**.
-
-5.  > The daemon creates and starts the **container** using that image.
-
-6.  > The container runs the application
+User runs a command using **Docker Client**.
+The client sends the request to **Docker Daemon**.
+The daemon checks if the image exists locally.
+If not available, it **pulls the image from Docker Registry**.
+The daemon creates and starts the **container** using that image.
+The container runs the application
 
 <!-- end list -->
 
-9.  > **Container orchestration**
+## Container orchestration
 
-> It is a solution that consists of a set of tools and scripts that can help host containers in a
-> 
-> production environment, typically a container orchestration solution consist of multiple docker
-> 
-> hosts that can host containers, that way even if one fails the application is still accessible
-> 
-> through the others, a container orchestration solution easily allows you to deploy hundreds or
-> 
-> thousands of instances of your application with a single command.
-> 
-> docker service create –replicas=100 nodejs (command used for docker swarm)
-> 
-> some orchestration solutions can help you automatically scale up the number of instances
-> 
-> when users increase and scale down the number of instances when the demand decreases. Some
-> 
-> solutions can even help you in automatically adding additional hosts support the user load and
-> 
-> not just clustering and scaling the container orchestration solutions, also provide advanced
-> 
-> networking between these containers across different hosts, as well as load balancing user
-> 
-> requests across different hosts.
-> 
-> There are multiple container orchestration solutions available today
-> 
-> Docker has docker swarm – lacks advanced auto scaling features required for complex
-> 
-> Production of great applications.
-> 
-> Kubernetes from google
-> 
-> MESOS from apache
+It is a solution that consists of a set of tools and scripts that can help host containers in a production environment, typically a container orchestration solution consist of multiple docker hosts that can host containers, that way even if one fails the application is still accessible through the others, a container orchestration solution easily allows you to deploy hundreds or thousands of instances of your application with a single command.
 
-**Docker commands**
+Docker service create –replicas=100 nodejs (command used for docker swarm) some orchestration solutions can help you automatically scale up the number of instances when users increase and scale down the number of instances when the demand decreases. Some solutions can even help you in automatically adding additional hosts support the user load and not just clustering and scaling the container orchestration solutions, also provide advanced networking between these containers across different hosts, as well as load balancing user requests across different hosts. There are multiple container orchestration solutions available today.
 
-To check the version of the OS that you downloaded – cat /etc/\*release\*
+Docker has docker swarm – lacks advanced auto scaling features required for complex Production of great applications.  
+ 
+Kubernetes from google
+ 
+MESOS from apache
+
+## Docker commands
+
+To check the version of the OS that you downloaded – `cat /etc/\*release\*`
 
 To run the container – docker run “imagename” (if image not available it pulls the latest image from docker hub and runs, unless specific version is specified)  
 The docker run command is used to run a container from an image.
