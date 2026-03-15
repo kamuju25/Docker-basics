@@ -18,11 +18,11 @@ Containers are completely isolated environments, as in they can have their own p
 
 A computer system created using software on one physical computer in order to emulate the functionality of another separate physical computer.
 
-**VMware**
+## VMware
 
 Virtual machine software that allows multiple copies of the same operating system or several different operating systems to run in the same machine.
 
-**Docker image**
+## Docker image
 
 An image is a combination of a file system and parameters. The **docker run** command is used to mention that we want to create an instance of an image, which is then called a container. Every docker image must be based off of another image, either an OS or another image that was created before based on an OS. All official releases of all operating systems can be found on **Docker hub**.
 
@@ -34,15 +34,13 @@ Unlike virtual machines, Containers are not meant to host an operating system. C
 
 When you run a container and it exits, the container actually lives on the disk drive.
 
-**RUN-STDIN**
+## RUN-STDIN
 
 ![](images/media/image27.png)
 
-1.  > Run-STDIN
+`Docker run –it applicationname` (to run application on container in an interactive mode)
 
-> Docker run –it applicationname (to run application on container in an interactive mode)
-
-**Run-port mapping**
+## Run-port mapping
 
 ![](images/media/image24.png)
 
@@ -54,11 +52,11 @@ But for that to work, you must have mapped the port inside the Docker container 
 
 For that to work, you must have mapped the port inside the docker container to a free port on the docker host. For example, for one of the users to access the application through port 80 on the docker host, port 80 must be mapped off to a local host to port 5000 on the docker container using the –p parameter in the run command..
 
-**Run – Volume mapping**
+## Run – Volume mapping
 
 ![](images/media/image1.png)
 
-**Docker file**
+## Docker file
 
 Docker file is a text file written in a specific format, a docker can understand, it is an instruction and argument format.
 
@@ -69,8 +67,6 @@ Docker file is a text file written in a specific format, a docker can understand
 Docker file based on above
 
 ![C:\\Downloads\\IMG\_2254.jpg](images/media/image25.jpg)
-
-**Docker file**
 
 ```bash
 Sudo Vi Dockerfile
@@ -93,13 +89,13 @@ Every docker image must be based on another image, either an OS or another image
 
 In case of the CMD instruction the command line parameters passed will get replaced entirely whereas in case of entry point the command line parameters will get appended.
 
-**Environment Variables**
+## Environment Variables
 
 ![](images/media/image13.png)
 
 Let us take a simple web application written in Python. This piece of code is used to create a web application that displays a web page with a background color. If you look closely into the application code you will see a line that sets the background color to red. Now that works just fine. However if you decide to change the color in the future you will have to change the application code. It is a best practice to move such information out of the application code and into say an environment variable called APP\_COLOR.
 
-**Command VS Entrypoint**
+## Command VS Entrypoint
 
 CMD in docker file, which stands for command, that defines the program that will be run within the container it starts.
 
@@ -116,7 +112,7 @@ The Entry point allows to specify a command that will be run when the image is r
 
 The difference between the two is, in case of CMD instruction, the command line parameters passed will get replaced entirely, whereas in case of entry point, the command line parameters will get appended. In simpler terms, **CMD sets default commands that can be overridden, while ENTRYPOINT defines the main command that always runs when the container starts.**
 
-**Docker compose**
+## Docker compose
 
 Docker compose is a tool used to define and run multiple Docker containers together as one application.
 
@@ -124,7 +120,7 @@ If we needed to set up a complex application running multiple services, a better
 
 This docker compose file would be used on the server to deploy all the applications/services.
 
-> ![](images/media/image17.png)
+![](images/media/image17.png)
 
 **Voting Application: (Example) On how to connect individual containers using links.**
 
@@ -140,7 +136,7 @@ This docker compose file would be used on the server to deploy all the applicati
 
 **Note:** Link is a command line option, which can be used to link 2 containers together.
 
-**Docker Versions**
+## Docker Versions
 
 Docker compose file (version 1, version 2, version 3)
 
@@ -148,9 +144,9 @@ Docker compose file (version 1, version 2, version 3)
 
 ![](images/media/image7.png)
 
-To start docker compose file – docker-compose –f filename.yml up
+To start docker compose file – `docker-compose –f filename.yml up`
 
-To stop the docker compose file - docker-compose –f filename.yml down
+To stop the docker compose file - `docker-compose –f filename.yml down`
 
 ## Docker registry
 
@@ -296,40 +292,35 @@ Vaults are used to protect credentials and any other sensitive information, for 
 Run-tag  
 To run an older version – `docker run imagename:version` (ex: docker run reddis:4.0)
 
-Advanced docker run features
+### Advanced docker run features
 
 To know what version of image is downloading – `docker run ubuntu cat /etc/\*release\*`
 
-Attach and detach modes
+### Attach and detach modes
  
 Attach mode (attach to the console, we won’t be able to perform any command operations)
-
 For example – `docker run ubuntu sleep 100`
- 
+
 Detach mode (runs in the background)
- 
 For example – `docker run –d ubuntu sleep 100`
  
-To attach to the console – `docker attach containerid`
- 
-To map the port of docker host to docker container – `docker run –p 8080:8080 jenkins`
- 
-To map docker volume so that the data can be stored, incase of container stopped or restarted –
- 
-`Docker run –p 8080:8080 –v /root/createddirectoryname:/var/jenkins/jenkins\_home –u(user) root jenkins`
+To attach to the console – `docker attach containerid`  
+To map the port of docker host to docker container – `docker run –p 8080:8080 jenkins`  
+To map docker volume so that the data can be stored, incase of container stopped or restarted – 
+`Docker run –p 8080:8080 –v /root/createddirectoryname:/var/jenkins/jenkins\_home –u(user) root jenkins`  
 
 ## Workflow of Docker Architecture
 
 ![](images/media/image26.png)
 
-Step-by-step process:
+### Step-by-step process:
 
-User runs a command using **Docker Client**.
-The client sends the request to **Docker Daemon**.
-The daemon checks if the image exists locally.
-If not available, it **pulls the image from Docker Registry**.
-The daemon creates and starts the **container** using that image.
-The container runs the application
+User runs a command using **Docker Client**.  
+The client sends the request to **Docker Daemon**.  
+The daemon checks if the image exists locally.  
+If not available, it **pulls the image from Docker Registry**.  
+The daemon creates and starts the **container** using that image.  
+The container runs the application.  
 
 <!-- end list -->
 
@@ -339,161 +330,157 @@ It is a solution that consists of a set of tools and scripts that can help host 
 
 Docker service create –replicas=100 nodejs (command used for docker swarm) some orchestration solutions can help you automatically scale up the number of instances when users increase and scale down the number of instances when the demand decreases. Some solutions can even help you in automatically adding additional hosts support the user load and not just clustering and scaling the container orchestration solutions, also provide advanced networking between these containers across different hosts, as well as load balancing user requests across different hosts. There are multiple container orchestration solutions available today.
 
-Docker has docker swarm – lacks advanced auto scaling features required for complex Production of great applications.  
- 
-Kubernetes from google
- 
-MESOS from apache
+Docker has docker swarm – lacks advanced auto scaling features required for complex Production of great applications.   
+Kubernetes from google  
+MESOS from apache  
 
 ## Docker commands
 
 To check the version of the OS that you downloaded – `cat /etc/\*release\*`
 
-To run the container – docker run “imagename” (if image not available it pulls the latest image from docker hub and runs, unless specific version is specified)  
+To run the container – `docker run “imagename”` (if image not available it pulls the latest image from docker hub and runs, unless specific version is specified)  
 The docker run command is used to run a container from an image.
 
-To run docker container in interactive mode – docker run –it(interactive & terminal mode) imagename
+To run docker container in interactive mode – `docker run –it(interactive & terminal mode) imagename`
 
-To run image with a specific version – docker run imagename:x.0 (this x.0 is called as tag)
+To run image with a specific version – `docker run imagename:x.0 (this x.0 is called as tag)`
 
-To lists all the running containers – docker ps (displays container I.D, imagename)
+To lists all the running containers – `docker ps (displays container I.D, imagename)`
 
-To get the number of running containers - docker ps -q | wc -l
+To get the number of running containers - `docker ps -q | wc -l`
 
-To lists all the containers stopped and also the exited ones – docker ps -a
+To lists all the containers stopped and also the exited ones – `docker ps -a`
 
-To stop a container – docker stop container id or name
+To stop a container – `docker stop container id or name`
 
-To delete(to remove stopped or exited containers) the containers permanently ( to clean the disk space) – docker rm container id or name
+To delete(to remove stopped or exited containers) the containers permanently ( to clean the disk space) – `docker rm container id or name`
 
-To delete the containers all at once – docker rm id1 id2 id3
+To delete the containers all at once – `docker rm id1 id2 id3`
 
-To delete all containers in stopped state - docker container prune
+To delete all containers in stopped state - `docker container prune`
 
-To see the images that are currently in – docker images
+To see the images that are currently in – `docker images`
 
-To get the number of docker images without counting the first line(as it is a Index) - docker images | tail -n +2 | wc -l
+To get the number of docker images without counting the first line(as it is a Index) - `docker images | tail -n +2 | wc -l`
 
-To remove the images – docker rmi (i-image) imagename
+To remove the images – `docker rmi (i-image) imagename`
 
-To just download the image and not run as a container – docker pull imagename
+To just download the image and not run as a container – `docker pull imagename`
 
-To run a command inside a running container to know the host details first identify the container you want to work with and then do a docker exec container id/name cat /etc/hosts
+To run a command inside a running container to know the host details first identify the container you want to work with and then do a `docker exec container id/name cat /etc/hosts`
 
-To run a docker image in the background (detach from screen and you’ll be back to command prompt) – docker run –d imagename
+To run a docker image in the background (detach from screen and you’ll be back to command prompt) – `docker run –d imagename`
 
-To attach back to the running container (from detached mode) – docker attach container id / name
+To attach back to the running container (from detached mode) – `docker attach container id / name`
 
-To check container environment variables quickly - docker exec \<container\_name\> env
+To check container environment variables quickly - `docker exec \<container\_name\> env`
 
-To give a name to a Docker container when running it using the --name flag - docker run --name your\_container\_name your\_image
+To give a name to a Docker container when running it using the --name flag - `docker run --name <yourcontainername> <yourimage>`
 
-To map a docker host port(80) to container port (8000) - docker run -p 80:5000 imagename
+To map a docker host port(80) to container port (8000) - `docker run -p 80:5000 imagename`
 
-To map volumes from a container to a file located on docker host - docker run -v /opt/datadir(filename on docker host):/var/lib/mysql(file on container) imagename.
+To map volumes from a container to a file located on docker host - docker run -v /opt/datadir(filename on `docker host):/var/lib/mysql(file on container) imagename`.
 
-To update internal repository – sudo apt-get update
+To update internal repository – `sudo apt-get update`
 
-To create user – sudo useradd knk0106
+To create user – `sudo useradd <username>`
 
-For password – sudo passwd knk0106
+For password – `sudo passwd <username>`
 
-Configuration file is available in - /etc/ssh/sshd\_config
+Configuration file is available in - `/etc/ssh/sshd_config`
 
-After any update in the configuration file we need to update the service – service sshd restart
+After any update in the configuration file we need to update the service – `service sshd restart`
 
-To give permissions to the user – etc/sudoers
+To give permissions to the user – `etc/sudoers`
 
-To add user to the docker group – usermod –aG docker username
+To add user to the docker group – `usermod –aG docker username`
 
-To check user added to the group – id –nG
+To check user added to the group – `id –nG`
 
-To search ubuntu – docker search ubuntu
+To search ubuntu – `docker search ubuntu`
 
-To come out of the container – ctrl+pq
+To come out of the container – `ctrl+pq`
 
-To start docker service – service docker start.
+To start docker service – `service docker start`.
 
-To check status of docker service – service docker status
+To check status of docker service – `service docker status`
 
-Working principle- we first download the docker image and run it as a container, on the container we shall install the required services like java, git etc., and then convert the container to image push that image to docker hub (old process). In the new method, we will prepare the docker file using script.
+**Working principle- we first download the docker image and run it as a container, on the container we shall install the required services like java, git etc., and then convert the container to image push that image to docker hub (old process). In the new method, we will prepare the docker file using script.**
 
-To convert container to image – docker commit containerid imagename:version(like-12.0.1)
+To convert container to image – `docker commit containerid imagename:version(like-12.0.1)`
 
-To login docker hub account in local – sudo docker login - -username=knk1691
+To login docker hub account in local – `sudo docker login - -<username>`
 
-To push the code to docker hub – sudo docker push imagename:version
+To push the code to docker hub – `sudo docker push imagename:version`
 
-To change the name of the image & run it – docker run –it - - name newname imagename
+To change the name of the image & run it – `docker run –it - - name newname imagename`
 
-To change the name of the image – docker tag newname/oldname
+To change the name of the image – `docker tag newname/oldname`
 
-To give name to the unnamed image – docker build . (for the current folder) –t(tag) newname
+To give name to the unnamed image – `docker build . (for the current folder) –t(tag) newname`
 
-To build the image using the docker file – docker build .(for the current folder) –f dockerfile –t dockeraccountname / tagnamefortheimage  
+To build the image using the docker file – `docker build .(for the current folder) –f dockerfile –t dockeraccountname / tagnamefortheimage`
 This will create an image locally on your system to make it available on the public docker hub repository push to docker hub using push command. Specifying docker account name, makes connection with the repository.
 
-To push image to docker hub – docker push imagename/dockerregistryname
+To push image to docker hub – `docker push imagename/dockerregistryname`
 
-To check docker server engine version – docker –v
+To check docker server engine version – `docker –v`
 
-To get to know more about docker – docker info
+To get to know more about docker – `docker info`
 
-To get docker commands – docker - - help or docker
+To get docker commands – `docker - - help` or docker
 
-To get logs of the container – docker logs container id
+To get logs of the container – `docker logs container id`
 
-To stream the logs – docker logs containerid –f
+To stream the logs – `docker logs containerid –f`
 
-To power on a container which is in off state – docker start containerid
+To power on a container which is in off state – `docker start containerid`
 
-To power off a container which is in on state – docker stop containerid
+To power off a container which is in on state – `docker stop containerid`
 
-To start a stop container – docker start containerid
+To start a stop container – `docker start containerid`
 
-To login to a container and execute a command – docker exec id/name commandname
+To login to a container and execute a command – `docker exec id/name commandname`
 
 So basically the exec command runs or executes a command on a running container.
 
-To list the processes running inside the container – docker exec \<container id\> ps -eaf
+To list the processes running inside the container – `docker exec \<container id\> ps -eaf`
 
-To login into a container - docker exec –it containerid /bin/bash or /bin/sh
+To login into a container - `docker exec –it containerid /bin/bash or /bin/sh`
 
-To automatically login into container, when it runs – docker run –it imagename bash
+To automatically login into container, when it runs – `docker` run –it imagename bash`
 
-To list the particular process running on the host – ps –eaf | grep processname
+To list the particular process running on the host – `ps –eaf | grep processname`
 
-To see how a particular image is built – docker history imageid
+To see how a particular image is built – `docker history imageid`
 
-To see the actual space consumption on the desk – docker system df
+To see the actual space consumption on the desk – `docker system df`
 
-To see the various steps involved in building an image – docker build output.
+To see the various steps involved in building an image – `docker build output`.
 
-To see a space breakdown by image – docker system df –v
+To see a space breakdown by image – `docker system df –v`
 
-To run container – docker run –d --name containername -p 8081:8080 imagename
+To run container – `docker run –d --name containername -p 8081:8080 imagename`
 
 To know more details about the docker container(IP of container, environment variables, network etc) –  
-docker inspect id / name
+`docker inspect id / name`
 
-To pass environment variable while running container – docker run –e APP\_COLOR-blue imagename
+To pass environment variable while running container – `docker run –e APP_COLOR-blue imagename`
 
-To remove all images images at once – docker image prune –a
+To remove all images images at once –`docker image prune –a`
 
-To list all the available and created networks -- docker network ls
+To list all the available and created networks - `docker network ls`
 
-To run tomcat apache server container – docker run –itd - -name webapp –p 8080:8080 tomcat
+To run tomcat apache server container – 
 
+```bash
+docker run –itd - -name webapp –p 8080:8080 tomcat
 docker exec –it containerid /bin/bash
-
 ls
-
 cd webapps.dist
-
 ls
-
 cp –R(recursively) \*(current directory) ..(1 folder above)/webapps
-
+```
 [<span class="underline">https://jhooq.com/docker-edit-file-inside-container/</span>](https://jhooq.com/docker-edit-file-inside-container/)
 
 The above steps are permitted only to the specific container, and when the container is stopped or restarted, the process needs to be executed again. For that purpose, we customize the docker image using docker file, so that the modification is permanent.
