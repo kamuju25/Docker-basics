@@ -72,12 +72,38 @@ Everthing happens in one container image that includes -
   Build  
   Compile
   Run
+Example - Java maven app
+```bash
+FROM maven:3.9.6-eclipse-temurin-17
+
+WORKDIR /app
+COPY . .
+RUN mvn clean package
+
+CMD ["java", "-jar", "target/app.jar"]
+```
 
 **2. Multi-stage Dockerfile**
 
 Uses multiple stages
-stage 1 --> build
+stage 1 --> build  
 stage 2 --> run
+
+Example -
+```bash
+# Stage 1: Build
+FROM maven:3.9.6-eclipse-temurin-17 AS builder
+WORKDIR /app
+COPY . .
+RUN mvn clean package
+
+# Stage 2: Runtime
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+COPY --from=builder /app/target/app.jar app.jar
+
+CMD ["java", "-jar", "app.jar"]
+```
 
 ![C:\\Downloads\\IMG\_2252.jpg](images/media/image23.jpg)
 
