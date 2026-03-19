@@ -68,10 +68,10 @@ There are mainly two approaches -
 
 **1. Single-stage Dockerfile**
 
-Everthing happens in one container image that includes -
+Everthing happens in one container image that includes -  
   Build  
-  Compile
-  Run
+  Compile  
+  Run  
 Example - Java maven app
 ```bash
 FROM maven:3.9.6-eclipse-temurin-17
