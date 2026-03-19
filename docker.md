@@ -60,6 +60,25 @@ For that to work, you must have mapped the port inside the docker container to a
 
 Docker file is a text file written in a specific format, a docker can understand, it is an instruction and argument format.
 
+## Types of Docker files
+
+There are mainly two approaches -
+  1. Single-stage Dockerfile
+  2. Multi-stage Dockerfile
+
+**1. Single-stage Dockerfile**
+
+Everthing happens in one container image that includes -
+  Build  
+  Compile
+  Run
+
+**2. Multi-stage Dockerfile**
+
+Uses multiple stages
+stage 1 --> build
+stage 2 --> run
+
 ![C:\\Downloads\\IMG\_2252.jpg](images/media/image23.jpg)
 
 ![C:\\Downloads\\IMG\_2253.jpg](images/media/image32.jpg)
