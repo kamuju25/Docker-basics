@@ -134,6 +134,14 @@ Every docker image must be based on another image, either an OS or another image
 
 In case of the CMD instruction the command line parameters passed will get replaced entirely whereas in case of entry point the command line parameters will get appended.
 
+## Docker init
+
+In simple terms, docker init is like a setup wizard for your code.If you have an app ready but don't know how to "Dockerize" it, you run this command. It looks at your files, figures out what programming language you are using, and automatically writes the configuration files needed to run your app inside a container.
+
+`Before docker init`: You had to manually write complex text files (like a Dockerfile) and research "best practices" to make sure your app was secure and fast.
+
+`With docker init`: You type one command, answer a few questions (like "What version of Python are you using?"), and Docker does the heavy lifting for you.
+
 ## Environment Variables
 
 ![](images/media/image13.png)
