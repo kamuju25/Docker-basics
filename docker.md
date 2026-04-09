@@ -536,4 +536,12 @@ cp –R(recursively) \*(current directory) ..(1 folder above)/webapps
 ```
 [<span class="underline">https://jhooq.com/docker-edit-file-inside-container/</span>](https://jhooq.com/docker-edit-file-inside-container/)
 
+## If docker host is running out of disk space, steps to be followed to clean up
+
+```bash
+docker system df  --> shows disk usage
+docker system prune -a  --> deletes everything unused
+docker volume prune  --> deletes unused volumes only
+```
+
 The above steps are permitted only to the specific container, and when the container is stopped or restarted, the process needs to be executed again. For that purpose, we customize the docker image using docker file, so that the modification is permanent.
